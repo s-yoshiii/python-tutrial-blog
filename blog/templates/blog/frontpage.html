@@ -6,6 +6,7 @@
     <small>Posted at {{ post.posted_date }}</small>
     <p>
         {{post.intro}}
+        <a href="{% url 'post_detail' post.slug %}">もっと読む</a>
     </p>
     <hr />
 </div>
