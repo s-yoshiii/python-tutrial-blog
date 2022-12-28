@@ -9,11 +9,30 @@
         {{post.body}}
     </p>
     <hr />
+    <!--コメントされたものを表示-->
+    <h2 class="subtitle">コメント</h2>
+    {% for comment in post.comments.all %}
+    <article class="media">
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    {{comment.name}}
+                    <small>{{comment.posted_date}}</small>
+                </p>
+                <p>{{comment.body}}</p>
+            </div>
+        </div>
+    </article>
+    {% empty %}
+    <div class="notification">
+        コメントはまだありません
+    </div>
+    {% endfor %}
     <!--コメント投稿エリア-->
     <h2 class="subtitle">コメントを追加</h2>
     <form action="." method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_div }}
         <div class="field">
             <div class="controle">
                 <button class="button is-danger">送信</button>
