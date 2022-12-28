@@ -1,14 +1,19 @@
 {% extends "blog/base.html" %}
 {% block content %}
-{%  for post in posts %}
-<div class="post block">
-    <h2 class="title is-4">{{post.title}}</h2>
-    <small>Posted at {{ post.posted_date }}</small>
-    <p>
-        {{post.intro}}
-        <a href="{% url 'post_detail' post.slug %}">もっと読む</a>
-    </p>
-    <hr />
+<div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
+    {%  for post in posts %}
+    <div class="column">
+        <div class="card">
+            <div class="card-content">
+                <a href="{% url 'post_detail' post.slug %}">
+                    <h2 class="title is-4">{{post.title}} <span class="subtitle is-block-mobile">Posted at {{ post.posted_date }}</span></h2>
+                    <p class="has-text-primary">
+                        {{post.intro}}
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}
