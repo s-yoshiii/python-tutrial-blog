@@ -30,7 +30,7 @@
     {% endfor %}
     <!--コメント投稿エリア-->
     <h2 class="subtitle">コメントを追加</h2>
-    <form action="." method="post">
+    <form action="." method="post" class="box">
         {% csrf_token %}
         {{ form.as_div }}
         <div class="field">
