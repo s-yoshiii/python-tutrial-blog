@@ -1,16 +1,22 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h2 class="subtitle">{{post.title}}</h2>
-    <small>Posted at {{ post.posted_date }}</small>
-    <p>
-        {{post.intro}}
-    </p>
-    <p>
-        {{post.body}}
-    </p>
-    <hr />
-    <!--コメントされたものを表示-->
-    <h2 class="subtitle">コメント</h2>
+<article class="message">
+    <div class="message-header">
+        <h2 class="is-size-4 has-text-weight-bold">{{post.title}}</h2>
+        <div class="has-text-right">Posted at {{ post.posted_date }}</div>
+    </div>
+    <div class="message-body">
+        <p class="mb-1">
+            {{post.intro}}
+        </p>
+        <p>
+            {{post.body}}
+        </p>
+    </div>
+</article>
+<!--コメントされたものを表示-->
+<div class="block">
+    <h3 class="title is-5">コメント</h3>
     {% for comment in post.comments.all %}
     <article class="media">
         <div class="media-content">
@@ -28,15 +34,16 @@
         コメントはまだありません
     </div>
     {% endfor %}
-    <!--コメント投稿エリア-->
-    <h2 class="subtitle">コメントを追加</h2>
-    <form action="." method="post" class="box">
-        {% csrf_token %}
-        {{ form.as_div }}
-        <div class="field">
-            <div class="controle">
-                <button class="button is-danger">送信</button>
-            </div>
+</div>
+<!--コメント投稿エリア-->
+<form action="." method="post" class="box">
+    <h3 class="title is-5">コメントを追加</h3>
+    {% csrf_token %}
+    {{ form.as_div }}
+    <div class="field">
+        <div class="controle">
+            <button class="button is-danger">送信</button>
         </div>
-    </form>
+    </div>
+</form>
 {% endblock %}
